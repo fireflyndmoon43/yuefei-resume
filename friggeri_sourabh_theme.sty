@@ -1,0 +1,89 @@
+% -------------------------------------------------
+% friggeri_sourabh_theme.sty
+% Compact Friggeri + Awesome-CV inspired theme
+% XeLaTeX ONLY
+% -------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{friggeri_sourabh_theme}[2025/01/03 Compact CV Theme]
+
+% ---------- Packages ----------
+\RequirePackage{xcolor}
+\RequirePackage{fontspec}
+\RequirePackage{xstring}
+\RequirePackage{titlesec}
+\RequirePackage{hyperref}
+
+% ---------- Colors ----------
+\definecolor{myblue}{RGB}{0,76,153}
+\definecolor{accentorange}{RGB}{230,120,20}
+\definecolor{sectionrule}{gray}{0.55}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=myblue,
+  urlcolor=myblue
+}
+
+% ---------- Fonts ----------
+\setmainfont{SabonLTStd}[
+  Path=./fonts/Sabon/,
+  Extension=.ttf,
+  UprightFont=*-Regular,
+  BoldFont=*-Bold,
+  ItalicFont=*-Italic,
+  BoldItalicFont=*-BoldItalic
+]
+
+\newfontfamily\BoldFont{SourceSans3}[
+  Path=./fonts/SourceSans3/,
+  Extension=.ttf,
+  UprightFont=*-Bold
+]
+
+\newfontfamily\Calluna{Calluna}[
+  Path=./fonts/Calluna/,
+  Extension=.otf,
+  UprightFont=*-Regular
+]
+
+\newfontfamily\Courier{CourierNew}[
+  Path=./fonts/Courier/,
+  Extension=.ttf,
+  UprightFont=*-Regular
+]
+
+% ---------- Emphasis ----------
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+% -------------------------------------------------
+% Section title accent: first 3 characters only
+% -------------------------------------------------
+\RequirePackage{xstring}
+
+\makeatletter
+\newcommand*{\sectionstyle}[1]{%
+  \par\noindent
+  {\BoldFont\scshape\fontsize{14pt}{16pt}\selectfont
+    \StrSplit{#1}{3}{\SectionAccent}{\SectionRest}%
+    {\color{accentorange}\SectionAccent}%
+    {\color{black}\SectionRest}%
+  }%
+}
+\makeatother
+
+
+
+% -------------------------------------------------
+% Section formatting (SAFE with titlesec)
+% -------------------------------------------------
+\newcommand{\cvsection}[1]{%
+  \par\vspace{0.9\baselineskip}%
+  \sectionstyle{#1}%
+  \par\vspace{0.4\baselineskip}%
+}
+
+
+% ---------- Helpers ----------
+\newcommand{\headingfont}{\BoldFont}
+\newcommand{\muted}[1]{{\color{gray}#1}}

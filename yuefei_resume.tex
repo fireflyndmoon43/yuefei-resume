@@ -1,0 +1,141 @@
+% -------------------------------------------------
+% Yue Fei — One-page Resume (XeLaTeX)
+% -------------------------------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+% ---------- Layout ----------
+\usepackage[top=1.2cm, bottom=2.6cm, left=1.8cm, right=2.3cm]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+
+% ---------- Theme ----------
+\usepackage{friggeri_sourabh_theme}
+
+% ---------- Global spacing ----------
+\setstretch{0.96}
+\raggedright
+\setlength{\parindent}{0pt}
+\setlist[itemize]{itemsep=1pt, topsep=0pt, parsep=0pt}
+
+% ---------- Custom lengths ----------
+\newlength\DateCol
+\setlength\DateCol{3.7cm}
+
+% ---------- Headings ----------
+\newcommand{\eduHeading}[3]{%
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabularx}{\linewidth}{@{}X >{\raggedleft\arraybackslash}p{\DateCol}@{}}
+    \textbf{#1} & \textit{#3} \\
+    \textit{#2} & \\
+  \end{tabularx}
+}
+
+\newcommand{\jobHeading}[3]{%
+  \renewcommand{\arraystretch}{1.05}
+  \begin{tabularx}{\linewidth}{@{}X >{\raggedleft\arraybackslash}p{\DateCol}@{}}
+    \textbf{#1} & \textit{#3} \\
+    \textit{#2} & \\
+  \end{tabularx}
+}
+
+\newcommand{\itemListStart}{\begin{itemize}}
+\newcommand{\itemListEnd}{\end{itemize}\vspace{1pt}}
+\newcommand{\myItem}[1]{\item #1}
+
+% ---------- Document ----------
+\begin{document}
+
+% ---------- HEADER ----------
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+
+% ---- Name + tagline (LEFT) ----
+\begin{minipage}[t]{0.62\textwidth}
+  {\Calluna \fontsize{30pt}{30pt}\selectfont
+   \textsc{Yue Fei}}
+  \quad
+  {\Calluna \fontsize{14.5pt}{14.5pt}\selectfont \textsc{she/her}} \\[3pt]
+
+  {\small \textit{Communication Systems \& Digital Design \& Computer Architecture}}
+\end{minipage}
+
+&
+
+% ---- Contact info (RIGHT) ----
+\begin{minipage}[t]{0.36\textwidth}
+  \raggedleft
+  \small
+  \faGraduationCap\ \href{https://scholar.google.ca/citations?view_op=list_works&hl=en&user=AYYyliAAAAAJ}{\textcolor{myblue}{Google Scholar}}\\[-1pt]
+  \faGithub\ \href{https://github.com/YueFei0403}{\textcolor{myblue}{github.com/YueFei0403}}\\[-1pt]
+  \faEnvelope\ \textcolor{myblue}{yuefei9943@gmail.com}\\[-1pt]
+  \faPhone\ \textcolor{myblue}{(+1)~647--866--7311}
+\end{minipage}
+
+\end{tabular*}
+
+\vspace{4pt}
+\noindent{\color{lightgray}\rule{\textwidth}{0.4pt}}
+\vspace{-10pt}
+
+
+% ---------- Education ----------
+\cvsection{Education}
+
+\eduHeading
+  {University of Toronto}
+  {Master of Engineering, Electrical \& Computer Engineering}
+  {Sep.~2022 -- Jun.~2024}
+\itemListStart
+  \myItem{\textbf{MEng Thesis:} \emph{Pilot Training -- Angle of Arrival and Channel Estimation in 5G Network}}
+  \myItem{Evaluated LMMSE, DFT, and Matrix-Pencil methods in multicell MIMO-OFDM; demonstrated higher AoA accuracy with pilot training under limited antennas.}
+  \myItem{Supervisor: \href{https://www.comm.utoronto.ca/~rsadve/}{Prof.~Raviraj Adve} \quad \href{https://github.com/YueFei0403/UMa_5G_AoA}{[Code]}}
+\itemListEnd
+
+\eduHeading
+  {University of Toronto}
+  {Bachelor of Applied Science, Electrical Engineering}
+  {Sep.~2017 -- Jun.~2022}
+\itemListStart
+  \myItem{\textbf{Capstone Project:} \emph{CNN NPU Overlay (MobileNetV1) on Intel Stratix~10~NX}}
+  \myItem{Designed custom convolution datapath replacing matrix–vector unit; achieved \textbf{4.3$\times$ speedup} and \textbf{76.6 GOP/s} throughput.}
+  \myItem{Supervisors: \href{https://www.eecg.utoronto.ca/~vaughn/}{Prof.~Vaughn Betz}, \href{https://andrewboutros.github.io/}{Andrew Boutros}}
+\itemListEnd
+
+% ---------- Experience ----------
+\cvsection{Experience}
+
+\jobHeading
+  {Qualcomm Canada}
+  {RF / ML Systems Engineer — Markham, Canada}
+  {Jun.~2024 -- Jul.~2025}
+\itemListStart
+  \myItem{Improved UWB receiver startup by reducing LNA charging delay \textbf{90\%} (20\,ns$\rightarrow$2\,ns).}
+  \myItem{Verified WLAN CP-PLL synthesizer across 500+ channels using UVM, ensuring coverage over 2G/5G bands.}
+  \myItem{Developed GRU-based multi-head model for analog gain line-up optimization and an MLP for VCO capacitance prediction, replacing manual tuning across 1000+ frequency targets.}
+\itemListEnd
+
+\jobHeading
+  {Alphawave Semi}
+  {Digital Verification Engineer — Toronto, Canada}
+  {May~2020 -- Jun.~2021}
+\itemListStart
+  \myItem{Built UVM testbenches for SerDes subsystems (clocking, datapath, SRAM), expanding coverage to 50+ scenarios.}
+  \myItem{Scaled Jenkins CI/CD regression from 4 to 60+ projects, enabling \textbf{15$\times$} throughput growth.}
+\itemListEnd
+
+% ---------- Skills ----------
+\cvsection{Technical Skills}
+
+\begin{itemize}[leftmargin=0pt,label={}]
+\item \textbf{Programming:} Python, C/C++, MATLAB, Julia, Arm Assembly, Verilog/SystemVerilog, Unix Shell
+\item \textbf{ML \& Optimization:} PyTorch, scikit-learn, GRU, MLP, attention models, convex optimization
+\item \textbf{Parallel Systems:} Multithreading, SIMD, multi-queue scheduling
+\item \textbf{Signal Processing:} OFDM, channel estimation, beamforming, Haar/DCT transforms
+\item \textbf{Tools:} Git, Makefile, Jenkins, SimpleScalar
+\end{itemize}
+
+\end{document}
