@@ -7,24 +7,62 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{friggeri_sourabh_theme}[2025/01/03 Compact CV Theme]
 
+\usepackage{fontawesome5} % or fontawesome depending on version
+\usepackage{academicons}  % for ORCID
+\usepackage{ifthen}
+\usepackage{etoolbox}     % for \ifstrequal
+\usepackage{enumitem}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=light_body,
+  linkcolor=light_body
+}
+
 % ---------- Packages ----------
 \RequirePackage{xcolor}
 \RequirePackage{fontspec}
 \RequirePackage{xstring}
 \RequirePackage{titlesec}
 \RequirePackage{hyperref}
+\RequirePackage{fancyhdr}
 
-% ---------- Colors ----------
-\definecolor{myblue}{RGB}{0,76,153}
-\definecolor{accentorange}{RGB}{230,120,20}
-\definecolor{sectionrule}{gray}{0.55}
+% ================= COLOR SYSTEM =======================
+% ---------- Navy (primary authority) ----------
+\definecolor{NavyPrimary}{HTML}{20349F}   % deep navy (almost black-blue)
+\definecolor{NavySecondary}{HTML}{3A8DEF} % slightly lighter navy
 
+% ---------- Orange (accent only) ----------
+\definecolor{WarmAccent}{HTML}{D97706}  % deep burnt orange (NOT yellow)
+\definecolor{OrangeSoft}{HTML}{F59E0B}    % optional hover / soft accent
+
+% ---------- Grays (text system) ----------
+\definecolor{TextPrimary}{HTML}{111111}   % main body
+\definecolor{TextSecondary}{HTML}{4B5563} % muted text
+\definecolor{TextMuted}{HTML}{9CA3AF}     % very subtle
+\definecolor{RuleGray}{HTML}{6B7280}      % section rules
+
+% ---------- Semantic aliases (use ONLY these below) ----------
+\colorlet{primary}{NavyPrimary}
+\colorlet{accent_body}{NavySecondary}
+
+\colorlet{body}{TextPrimary}
+\colorlet{secondary_body}{TextSecondary}
+
+\colorlet{warm_accent}{WarmAccent}
+\colorlet{sectionrule}{RuleGray}
+
+% Icons & highlights
+\colorlet{light_icons}{WarmAccent}
+\colorlet{light_body}{WarmAccent}
+
+
+% ---------- Hyperlinks ----------
 \hypersetup{
   colorlinks=true,
-  linkcolor=myblue,
-  urlcolor=myblue
+  linkcolor=WarmAccent,
+  urlcolor=WarmAccent
 }
-
 % ---------- Fonts ----------
 \setmainfont{SabonLTStd}[
   Path=./fonts/Sabon/,
@@ -35,10 +73,20 @@
   BoldItalicFont=*-BoldItalic
 ]
 
+\newfontfamily\RobotoBold{Roboto}[
+  Path=./fonts/Roboto/,
+  Extension=.ttf,
+  UprightFont=*Condensed-Bold
+]
+\newfontfamily\RobotoRegular{Roboto}[
+  Path=./fonts/Roboto/,
+  Extension=.ttf,
+  UprightFont=*-Regular
+]
 \newfontfamily\BoldFont{SourceSans3}[
   Path=./fonts/SourceSans3/,
   Extension=.ttf,
-  UprightFont=*-Bold
+  UprightFont=*-Black
 ]
 
 \newfontfamily\Calluna{Calluna}[
@@ -56,6 +104,115 @@
 % ---------- Emphasis ----------
 \renewcommand{\emph}[1]{\textbf{#1}}
 
+% ======================================================
+% =============== HEADER DEFINITIONS ===================
+% ======================================================
+
+% ---------- Safety defaults (avoid undefined macros) ----------
+\providecommand\@firstname{}
+\providecommand\@familyname{}
+\providecommand\@tagline{}
+\providecommand\@personalinfo{}
+
+% ---------- Name & text storage ----------
+\newcommand{\name}[1]{\def\@name{#1}}
+\newcommand{\firstname}[1]{\def\@firstname{#1}}
+\newcommand{\familyname}[1]{\def\@familyname{#1}}
+\newcommand{\tagline}[1]{\def\@tagline{#1}}
+\newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
+
+% ---------- Icon symbols ----------
+\newcommand{\emailsymbol}{\faEnvelope}
+\newcommand{\phonesymbol}{\faPhone}
+\newcommand{\linkedinsymbol}{\faLinkedin}
+\newcommand{\githubsymbol}{\faGithub}
+
+% ---------- Contact rendering ----------
+\newcommand{\printinfo}[2]{%
+  \mbox{%
+    \makebox[1.5em][c]{\footnotesize\textcolor{light_icons}{#1}}%
+    \hspace{0.5em}%
+    \textcolor{secondary_body}{#2}%
+    \hspace{1.3em}%
+  }%
+}
+
+\newcommand{\email}[1]{%
+  \href{mailto:#1}{\printinfo{\emailsymbol}{#1}}%
+}
+\newcommand{\phone}[1]{%
+  \printinfo{\phonesymbol}{#1}%
+}
+\newcommand{\scholarsymbol}{\aiGoogleScholar}
+\newcommand{\scholar}[1]{%
+  \href{#1}{\printinfo{\scholarsymbol}{Google Scholar}}%
+}
+\newcommand{\github}[1]{%
+  \href{https://github.com/#1}{\printinfo{\githubsymbol}{#1}}%
+}
+\newcommand{\linkedin}[2]{%
+  \href{https://www.linkedin.com/in/#1}{%
+    \printinfo{\linkedinsymbol}{#2}%
+  }%
+}
+
+% ---------- Typography ----------
+\newcommand{\namefont}{\BoldFont\fontsize{30pt}{30pt}\selectfont}
+\newcommand{\pronounfont}{\Calluna\fontsize{14.5pt}{14.5pt}\selectfont}
+\newcommand{\taglinefont}{\small\itshape}
+\newcommand{\namespacing}{\addfontfeatures{LetterSpace=4}}
+\newcommand{\pronouns}[1]{\def\@pronouns{#1}}
+\providecommand\@pronouns{}
+% ======================================================
+% ================= HEADER CONTENT =====================
+% ======================================================
+
+\firstname{Yue}
+\familyname{Fei}
+\pronouns{she / her}
+
+\tagline{Communication Systems \& Digital Design \& Computer Architecture}
+
+\personalinfo{
+  \email{yuefei9943@gmail.com}
+  \github{fireflyndmoon43}
+  \linkedin{yue-fei-6b23ab152}{Yue Fei}
+  \scholar{https://scholar.google.ca/citations?user=AYYyliAAAAAJ&hl=en}
+  \phone{(+1)~647--866--7311}
+}
+
+% ================= HEADER LAYOUT ======================
+\makeatletter
+\newcommand{\makecvheader}{%
+  \begingroup
+    \noindent
+
+    \makebox[\textwidth][l]{%
+      {\BoldFont\addfontfeatures{LetterSpace=8}%
+      \fontsize{26pt}{26pt}\selectfont
+      \color{primary}%
+      \textsc{\@firstname\ \@familyname}%
+      \ifx\@pronouns\@empty\else%
+        {\normalfont\small\color{primary}\hspace{0.6em}(\emph{\@pronouns})}%
+      \fi%
+      \hspace{1.2em}%
+      {\normalfont\taglinefont\color{primary}\@tagline}%
+      }%
+    }
+
+
+    \vspace{2pt}
+
+    \makebox[\textwidth][l]{%
+      {\small\color{secondary_body}\@personalinfo}%
+    }
+
+  \endgroup
+  \vspace{-5pt}
+}
+\makeatother
+
+
 % -------------------------------------------------
 % Section title accent: first 3 characters only
 % -------------------------------------------------
@@ -65,13 +222,26 @@
 \newcommand*{\sectionstyle}[1]{%
   \par\noindent
   {\BoldFont\scshape\fontsize{14pt}{16pt}\selectfont
-    \StrSplit{#1}{3}{\SectionAccent}{\SectionRest}%
-    {\color{accentorange}\SectionAccent}%
-    {\color{black}\SectionRest}%
+    % Check if there is a meta separator |
+    \IfSubStr{#1}{|}{%
+      % Split main title and meta
+      \StrBefore{#1}{|}[\SectionMain]%
+      \StrBehind{#1}{|}[\SectionMeta]%
+      % Apply your original first-3-letter accent to MAIN title
+      \StrSplit{\SectionMain}{3}{\SectionAccent}{\SectionRest}%
+      {\color{WarmAccent}\SectionAccent}%
+      {\color{black}\SectionRest}%
+      % Meta part (muted color)
+      {\small\color{secondary_body}\,\textbar\,\SectionMeta}%
+    }{%
+      % No meta: original behavior unchanged
+      \StrSplit{#1}{3}{\SectionAccent}{\SectionRest}%
+      {\color{WarmAccent}\SectionAccent}%
+      {\color{black}\SectionRest}%
+    }%
   }%
 }
 \makeatother
-
 
 
 % -------------------------------------------------
@@ -83,7 +253,64 @@
   \par\vspace{0.4\baselineskip}%
 }
 
+\newcommand{\cvsectionwithmeta}[2]{%
+  \cvsection{#1 \texorpdfstring{\,|\,#2}{ | #2}}%
+}
+
 
 % ---------- Helpers ----------
 \newcommand{\headingfont}{\BoldFont}
 \newcommand{\muted}[1]{{\color{gray}#1}}
+
+\newcommand{\advisorlink}[2]{%
+  \href{#1}{\textcolor{body}{#2}}%
+}
+
+\newcommand{\thesistitle}[1]{\textcolor{NavyPrimary}{#1}}
+
+\newcommand{\talkItem}[4]{%
+  \vspace{-2pt}%
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}p{\DateCol}@{}}%
+    \small\textbf{#1}%
+    {\small\color{secondary_body}\hspace{0.4em}— #3}%
+    & \makebox[\DateCol][r]{\textit{#4}} \\[-3pt]
+    {\footnotesize\hspace{1.2em}\textit{#2}} & \\
+  \end{tabularx}%
+}
+
+
+\newcommand{\mySubItem}[1]{%
+  \item[]\hspace{1.2em}{\footnotesize\textbullet\ #1}%
+}
+
+\newcommand{\projCategory}[1]{%
+  \vspace{0.6\baselineskip}
+  {\RobotoBold\fontsize{11.5pt}{13pt}\scshape\color{primary}#1}
+  \vspace{0.2\baselineskip}
+}
+
+\newcommand{\pubListStart}{%
+  \begin{enumerate}[
+    leftmargin=1.2em,
+    labelsep=0.5em,
+    itemsep=1pt,
+    topsep=0pt,
+    parsep=0pt
+  ]%
+  \justifying
+}
+\newcommand{\pubListEnd}{%
+  \end{enumerate}\vspace{-1pt}%
+}
+
+\newcommand{\papertitle}[1]{%
+  \textit{\color{primary}#1}%
+}
+
+\newcommand{\conference}[1]{%
+  {\scshape\color{secondary_body}#1}%
+}
+
+\newcommand{\submissionstatus}[1]{%
+  {\small\itshape\color{secondary_body}[#1]}%
+}

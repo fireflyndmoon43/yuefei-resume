@@ -2,10 +2,10 @@
 % Yue Fei — One-page Resume (XeLaTeX)
 % -------------------------------------------------
 
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
 % ---------- Layout ----------
-\usepackage[top=1.2cm, bottom=2.6cm, left=1.8cm, right=2.3cm]{geometry}
+\usepackage[top=1cm, bottom=2cm, left=1.3cm, right=2cm]{geometry}
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage{tabularx}
@@ -35,13 +35,24 @@
   \end{tabularx}
 }
 
-\newcommand{\jobHeading}[3]{%
+\newcommand{\jobHeading}[4]{%
   \renewcommand{\arraystretch}{1.05}
   \begin{tabularx}{\linewidth}{@{}X >{\raggedleft\arraybackslash}p{\DateCol}@{}}
-    \textbf{#1} & \textit{#3} \\
+    \textbf{#1}%
+    {\footnotesize\color{secondary_body}\hspace{0.4em}· #3} &
+    \makebox[\DateCol][r]{\textit{#4}} \\
     \textit{#2} & \\
   \end{tabularx}
 }
+
+\newcommand{\projHeading}[2]{%
+  \renewcommand{\arraystretch}{1.15}%
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}p{\DateCol}@{}}%
+    {\textbf{#1}} &
+    \makebox[\DateCol][r]{\textit{#2}} \\
+  \end{tabularx}%
+}
+
 
 \newcommand{\itemListStart}{\begin{itemize}}
 \newcommand{\itemListEnd}{\end{itemize}\vspace{1pt}}
@@ -51,48 +62,27 @@
 \begin{document}
 
 % ---------- HEADER ----------
-\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+\makecvheader
 
-% ---- Name + tagline (LEFT) ----
-\begin{minipage}[t]{0.62\textwidth}
-  {\Calluna \fontsize{30pt}{30pt}\selectfont
-   \textsc{Yue Fei}}
-  \quad
-  {\Calluna \fontsize{14.5pt}{14.5pt}\selectfont \textsc{she/her}} \\[3pt]
-
-  {\small \textit{Communication Systems \& Digital Design \& Computer Architecture}}
-\end{minipage}
-
-&
-
-% ---- Contact info (RIGHT) ----
-\begin{minipage}[t]{0.36\textwidth}
-  \raggedleft
-  \small
-  \faGraduationCap\ \href{https://scholar.google.ca/citations?view_op=list_works&hl=en&user=AYYyliAAAAAJ}{\textcolor{myblue}{Google Scholar}}\\[-1pt]
-  \faGithub\ \href{https://github.com/YueFei0403}{\textcolor{myblue}{github.com/YueFei0403}}\\[-1pt]
-  \faEnvelope\ \textcolor{myblue}{yuefei9943@gmail.com}\\[-1pt]
-  \faPhone\ \textcolor{myblue}{(+1)~647--866--7311}
-\end{minipage}
-
-\end{tabular*}
-
-\vspace{4pt}
 \noindent{\color{lightgray}\rule{\textwidth}{0.4pt}}
-\vspace{-10pt}
+\vspace{-14pt}
 
 
 % ---------- Education ----------
 \cvsection{Education}
-
 \eduHeading
   {University of Toronto}
   {Master of Engineering, Electrical \& Computer Engineering}
   {Sep.~2022 -- Jun.~2024}
 \itemListStart
-  \myItem{\textbf{MEng Thesis:} \emph{Pilot Training -- Angle of Arrival and Channel Estimation in 5G Network}}
-  \myItem{Evaluated LMMSE, DFT, and Matrix-Pencil methods in multicell MIMO-OFDM; demonstrated higher AoA accuracy with pilot training under limited antennas.}
-  \myItem{Supervisor: \href{https://www.comm.utoronto.ca/~rsadve/}{Prof.~Raviraj Adve} \quad \href{https://github.com/YueFei0403/UMa_5G_AoA}{[Code]}}
+  \myItem{%
+    \thesistitle{\textbf{MEng Thesis (Individual):} \emph{Pilot Training -- Angle of Arrival and Channel Estimation in 5G Network}}
+    \ \href{https://github.com/fireflyndmoon43/UMa_5G_AoA}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+  }
+
+  \myItem{Compared \textbf{Linear Minimum Mean Square Error (LMMSE)} approach and \textbf{Matrix-Pencil Method (MPM)} for uplink channel estimation in \textbf{multicell MIMO-OFDM systems} with four distributed units (DUs) arranged in a square of radius 100 m, using a 3GPP-compliant MATLAB model.}
+  \myItem{Showed that with \textbf{pilot training} in time or frequency domain, MPM yields higher angle-of-arrival accuracy than DFT-based and MMSE methods with limited antennas.}
+  \myItem{Supervisor: \advisorlink{https://www.comm.utoronto.ca/~rsadve/}{Prof.~Raviraj Adve}}
 \itemListEnd
 
 \eduHeading
@@ -100,42 +90,145 @@
   {Bachelor of Applied Science, Electrical Engineering}
   {Sep.~2017 -- Jun.~2022}
 \itemListStart
-  \myItem{\textbf{Capstone Project:} \emph{CNN NPU Overlay (MobileNetV1) on Intel Stratix~10~NX}}
-  \myItem{Designed custom convolution datapath replacing matrix–vector unit; achieved \textbf{4.3$\times$ speedup} and \textbf{76.6 GOP/s} throughput.}
-  \myItem{Supervisors: \href{https://www.eecg.utoronto.ca/~vaughn/}{Prof.~Vaughn Betz}, \href{https://andrewboutros.github.io/}{Andrew Boutros}}
+  \myItem{%
+    \thesistitle{\textbf{Capstone Project (Teamwork):} \emph{CNN NPU Overlay (MobileNetV1) on Intel Stratix~10~NX}}
+  }
+  \myItem{Collaborated to replace the original matrix–vector unit of the Microsoft Brainwave NPU on Intel Stratix 10 NX with a \textbf{custom convolution unit (scheduler + tiles + accumulator)}, achieving \textbf{4.3×} speedup and \textbf{76.6 GOP/s} on MobileNetV1 inference.}
+  \myItem{Collaborate to develop a \textbf{VLIW-based Python compiler} and \textbf{ISA simulator} to translate Keras models into NPU instructions, managing memory allocation and cycle-accurate performance verification.}
+  \myItem{Designed a \textbf{pipelined accumulator} enabling 330 MHz operation; implemented three-stage \textbf{reduction-tree addition} and \textbf{opcode-based accumulation modes}, verified correct synchronization and 450 MHz Fmax in Quartus.}
+  \myItem{Supervisors:
+  \advisorlink{https://www.eecg.utoronto.ca/~vaughn/}{Prof.~Vaughn Betz},
+  \advisorlink{https://andrewboutros.github.io/}{Andrew Boutros}}
 \itemListEnd
+
+% ---------- Publications ----------
+\cvsectionwithmeta{Publications}{Peer-reviewed conferences}
+\vspace{-2pt}
+\pubListStart
+\item Arash Ahmadian, Louis S.P. Liu, \textbf{Yue Fei}, Konstantinos N. Plataniotis, Mahdi S. Hosseini.\href{https://ieeexplore.ieee.org/document/10097215/}{\papertitle{Pseudo-Inverted Bottleneck Convolution for DARTS Search Space}}.
+\conference{IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 2023.
+
+\item Abnash Bassi, \textbf{Yue Fei}, Gilead Posluns, Mark C. Jeffrey.
+\papertitle{Optimized Priority Scheduling for Faster Scalable Belief Propagation}.
+\conference{Probabilistic Graphical Models (PGM)}, \submissionstatus{In Submission}, 2026.
+\pubListEnd
+
 
 % ---------- Experience ----------
 \cvsection{Experience}
+\jobHeading
+  {MediumAI}
+  {Software Development Engineer — Hybrid, Toronto, Canada}
+  {Freelance}
+  {Jan.~2026 -- Present}
+\itemListStart
+  \myItem{Build API integrations for a voice LLM–powered medical scribe agent, enabling secure multilingual clinical documentation.}
+\itemListEnd
+
+\jobHeading
+  {iQIYI.com}
+  {Data Analyst — Remote, Beijing, China}
+  {Internship}
+  {Oct.~2025 -- Dec.~2025}
+\itemListStart
+  \myItem{Combined three-arm A/B testing with causal forests and decision-tree rules for deployable personalization, lifting renewal rates from \textbf{37\%} to \textbf{54.06\%.}}
+\itemListEnd
 
 \jobHeading
   {Qualcomm Canada}
-  {RF / ML Systems Engineer — Markham, Canada}
+  {RFIC Design Verification Engineer — Hybrid, Markham, Canada}
+  {Permanent Full-time}
   {Jun.~2024 -- Jul.~2025}
 \itemListStart
-  \myItem{Improved UWB receiver startup by reducing LNA charging delay \textbf{90\%} (20\,ns$\rightarrow$2\,ns).}
-  \myItem{Verified WLAN CP-PLL synthesizer across 500+ channels using UVM, ensuring coverage over 2G/5G bands.}
+  \myItem{Verified UWB receiver path(analog front end); improved UWB receiver bootup by reducing LNA charging delay \textbf{90\%} (20\,ns$\rightarrow$2\,ns); Verified WLAN CP-PLL synthesizer across 500+ channels using UVM, ensuring coverage over 2G/5G bands.}
   \myItem{Developed GRU-based multi-head model for analog gain line-up optimization and an MLP for VCO capacitance prediction, replacing manual tuning across 1000+ frequency targets.}
 \itemListEnd
 
 \jobHeading
-  {Alphawave Semi}
-  {Digital Verification Engineer — Toronto, Canada}
-  {May~2020 -- Jun.~2021}
+  {University of Toronto -- WIRLab}
+  {Research Assistant — Remote, Toronto, Canada}
+  {Contract Part-time}
+  {Jul. 2021 -- Sep. 2021}
 \itemListStart
-  \myItem{Built UVM testbenches for SerDes subsystems (clocking, datapath, SRAM), expanding coverage to 50+ scenarios.}
-  \myItem{Scaled Jenkins CI/CD regression from 4 to 60+ projects, enabling \textbf{15$\times$} throughput growth.}
+  \myItem{Explored \textbf{RNN-based Transformer models} and \textbf{Attention mechanisms} for NLP tasks.}\href{https://github.com/fireflyndmoon43/attn_nmt_visualize/blob/main/Final_Report_2021_08_30.pdf}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+  \myItem{Applied \textbf{PCA-based embedding visualization}—as used in \textbf{GloVe}—to project high-dimensional embeddings into \textbf{2D/3D space} using \textbf{Python (NumPy, Matplotlib)}, enabling intuitive inspection of semantic clusters.}
 \itemListEnd
 
-% ---------- Skills ----------
-\cvsection{Technical Skills}
 
-\begin{itemize}[leftmargin=0pt,label={}]
-\item \textbf{Programming:} Python, C/C++, MATLAB, Julia, Arm Assembly, Verilog/SystemVerilog, Unix Shell
-\item \textbf{ML \& Optimization:} PyTorch, scikit-learn, GRU, MLP, attention models, convex optimization
-\item \textbf{Parallel Systems:} Multithreading, SIMD, multi-queue scheduling
-\item \textbf{Signal Processing:} OFDM, channel estimation, beamforming, Haar/DCT transforms
-\item \textbf{Tools:} Git, Makefile, Jenkins, SimpleScalar
-\end{itemize}
+\jobHeading
+  {Alphawave Semi}
+  {SerDes Digital Verification Engineer — Remote, Toronto, Canada}
+  {Internship}
+  {May~2020 -- Jun.~2021}
+\itemListStart
+  \myItem{Built UVM testbenches for SerDes subsystems (clocking, datapath, SRAM), expanding coverage to 50+ scenarios; Scaled Jenkins CI/CD regression from 4 to 60+ projects, enabling \textbf{15$\times$} throughput growth.}
+\itemListEnd
+
+% ---------- Awards ----------
+\cvsection{Awards and Certificates}
+\itemListStart
+\vspace{-4pt}
+\item Edward S. Rogers Sr. Department Betz Entrance Scholarship (\$5,000) \hfill \textit{2017}
+\item Certificate in Engineering Business  \hfill \textit{Jun. 2022}
+\itemListEnd
+
+\cvsection{Invited Talks}
+\vspace{-2pt}
+\talkItem
+  {Qualcomm Panel Discussion: \textit{Demystifying Machine Learning}}
+  {Talk: \textit{From Channels to States — Machine Learning in the Language of Communication and Control}}
+  {QWomen San Diego}
+  {Mar.\ 2025}
+
+% ---------- Projects ----------
+\cvsection{Selected Academic Projects}
+\vspace{-4pt}
+\projCategory{Computer Architecture \& Systems}
+\projHeading{Parallel Beamforming \& Cache-Coherence}{Jan.~2024 -- May.~2024}
+\itemListStart
+  \myItem{Accelerated medical imaging by \textbf{7×} (17\,s $\rightarrow$ 2.5\,s) via \textbf{16-thread data-parallel} ultrasound beamforming with Intel SIMD intrinsics and memory optimizations (\texttt{restrict}); validated correctness (RMS error $<10^{-16}$) and scalability (1–16 threads).}
+  \href{https://github.com/fireflyndmoon43/ece1755/blob/main/assignment1_code/beamform_mt.c}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+  \myItem{Designed and verified a \textbf{3-hop directory cache-coherence protocol} (MSI/MESI) in Mur$\phi$, optimizing with an \textbf{Exclusive (E)} state to eliminate unnecessary bus transactions.}
+  \href{https://github.com/fireflyndmoon43/Murphi3.1-CacheCoherence/tree/main/ece1755_sample}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+\itemListEnd
+
+\projHeading{Computer Architecture Coursework (Team of 2)}{Sep.~2021 -- Dec.~2021}
+\itemListStart
+  \myItem{Modeled \textbf{data hazard detection} in a modified \textbf{MIPS 6-stage pipelined CPU}, validating correctness via explicit stall-cycle annotation.}
+  \myItem{Designed a \textbf{perceptron-based branch predictor}, combining local branch history with long global history to reduce MPKI under tight storage constraints.}
+  \myItem{Implemented \textbf{Tomasulo out-of-order execution} with register renaming and dynamic scheduling, and an \textbf{MSI directory-based cache-coherence protocol}.}
+  \myItem{Implemented a \textbf{Bouquet L1 data prefetcher} using IPCP, DPT, and a global history buffer (GHB) with confidence-based arbitration.}
+  \mySubItem{Evaluated feasibility using CACTI, showing \textbf{$\sim$24\%} area overhead and parallel access within \textbf{$<1$\,ns} latency.}
+\itemListEnd
+
+\projCategory{Error-Correcting Codes \& Graphical Inference}
+
+\projHeading{Graph-Based Error-Correcting Codes}{Sep.~2023 -- Dec.~2023}
+\itemListStart
+  \myItem{Implemented \textbf{LDPC}, fountain/LT, and \textbf{Polar encoders/decoders} over the binary-erasure channel, developing custom simulators in Julia and MATLAB.}
+  \href{https://github.com/fireflyndmoon43/ECE1508-Graphs-Codes-and-Inference}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+\itemListEnd
+
+\projHeading{Error Control Coding: Convolutional \& BCH Codes}{Jan.~2023 -- May.~2023}
+\itemListStart
+  \myItem{Implemented \textbf{convolutional encoders} with \textbf{Viterbi decoding} and \textbf{binary BCH encoders/decoders} over \(GF(2^m)\) using custom trellis structures in MATLAB.}
+\itemListEnd
+
+\projCategory{Information Theory \& Semantic Communications}
+
+\projHeading{Sampling-Based Semantic Source Coding (One-Shot Information Theory)}{Jan.~2023 -- May.~2023}
+\itemListStart
+  \myItem{Implemented \textbf{Poisson functional representation}, \textbf{rejection sampling}, \textbf{importance sampling}, and hybrid Poisson\,+\,dithered quantization for 6G semantic source coding in MATLAB.}
+  \href{https://github.com/fireflyndmoon43/ECE1508-OneShotInfoTheory/tree/main}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+\itemListEnd
+
+\projCategory{Wireless Communications \& Signal Processing}
+
+\projHeading{LTE Signal Processing}{Jan.~2022 -- Apr.~2022}
+\itemListStart
+  \myItem{Processed captured LTE signals for \textbf{time/frequency synchronization}, \textbf{OFDM demodulation}, and \textbf{channel equalization}; resampled 40\,MHz RF data to the 30.72\,MHz LTE rate and validated \textbf{PSS/SSS} detection.}
+\itemListEnd
+
+
 
 \end{document}
