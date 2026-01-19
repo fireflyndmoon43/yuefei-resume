@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2025.9.24)  15 JAN 2026 16:05
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2025.9.24)  19 JAN 2026 13:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -618,6 +618,10 @@ LaTeX Font Info:    Trying to load font information for TU+academicons on input
 
 (/usr/share/texlive/texmf-dist/tex/latex/academicons/tuacademicons.fd)
 Missing character: There is no   (U+0020) in font [academicons.ttf]:!
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 167.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 167.
 [1
 
 ] (build/yuefei_resume_altera.aux)
@@ -629,12 +633,12 @@ Package rerunfilecheck Info: File `yuefei_resume_altera.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 14728 strings out of 474878
- 279227 string characters out of 5762516
+ 14757 strings out of 474878
+ 279921 string characters out of 5762516
  1955627 words of memory out of 5000000
- 36568 multiletter control sequences out of 15000+600000
- 558805 words of font info for 84 fonts, out of 8000000 for 9000
+ 36584 multiletter control sequences out of 15000+600000
+ 560668 words of font info for 95 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 83i,9n,100p,381b,327s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,9n,100p,324b,327s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on build/yuefei_resume_altera.pdf (1 page).

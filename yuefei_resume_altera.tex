@@ -65,49 +65,6 @@
 \noindent{\color{lightgray}\rule{\textwidth}{0.4pt}}
 \vspace{-14pt}
 
-
-% ---------- Education ----------
-\cvsection{Education}
-\eduHeading
-  {University of Toronto}
-  {Master of Engineering, Electrical \& Computer Engineering}
-  {Sep.~2022 -- Jun.~2024}
-\itemListStart
-  \myItem{%
-    \thesistitle{\textbf{MEng Thesis:} \emph{Pilot Training -- Angle of Arrival and Channel Estimation in 5G Networks}
-    \ \href{https://github.com/fireflyndmoon43/UMa_5G_AoA}{\textcolor{NavySecondary}{\textbf{[Code]}}}}
-  }\small{
-  \myItem{Evaluated \textbf{LMMSE} vs.\ \textbf{Matrix-Pencil} methods for uplink channel estimation in \textbf{multicell MIMO-OFDM} (3GPP-compliant), showing \textbf{higher AoA accuracy} under limited-antenna regimes.}}
-  \myItem{Supervisor: \advisorlink{https://www.comm.utoronto.ca/~rsadve/}{Prof.~Raviraj Adve}}
-\itemListEnd
-
-
-\eduHeading
-  {University of Toronto}
-  {Bachelor of Applied Science, Electrical Engineering}
-  {Sep.~2017 -- Jun.~2022}
-\itemListStart
-  \myItem{%
-    \thesistitle{\textbf{Capstone Project:} \emph{CNN NPU Overlay \& Compiler for Intel Stratix 10 NX}}
-  }
-  \small{
-  \myItem{Collaborated to develop a custom Convolution Unit and DLS Compiler to optimize MobileNetV1 inference on Stratix 10 NX, achieving a \textbf{4.3× speedup} over baseline Microsoft Brainwave architectures.}}
-  \myItem{Supervisors: \advisorlink{https://www.eecg.utoronto.ca/~vaughn/}{Prof. Vaughn Betz}, \advisorlink{https://andrewboutros.github.io/}{Andrew Boutros}}
-\itemListEnd
-
-% ---------- Publications ----------
-\cvsectionwithmeta{Publications}{Peer-reviewed conferences}
-\vspace{-2pt}
-\pubListStart
-\item Arash Ahmadian, Louis S.P. Liu, \textbf{Yue Fei}, Konstantinos N. Plataniotis, Mahdi S. Hosseini. \href{https://ieeexplore.ieee.org/document/10097215/}{\papertitle{Pseudo-Inverted Bottleneck Convolution for DARTS Search Space}}.
-\conference{IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 2023.
-
-\item Abnash Bassi, \textbf{Yue Fei}, Gilead Posluns, Mark C. Jeffrey.
-\papertitle{Optimized Priority Scheduling for Faster Scalable Belief Propagation}.
-\conference{Probabilistic Graphical Models (PGM)}, \submissionstatus{In Submission}, 2026.
-\pubListEnd
-
-
 % ---------- Experience ----------
 \cvsection{Experience}
 \jobHeading
@@ -116,7 +73,7 @@
   {Freelance}
   {Jan.~2026 -- Present}
 \itemListStart
-  \myItem{Build API integrations for a voice LLM–powered medical scribe agent, enabling secure multilingual clinical documentation.}
+  \myItem{Build API integrations for a voice-LLM powered medical scribe agent, enabling secure multilingual clinical records.}
 \itemListEnd
 
 \jobHeading
@@ -134,8 +91,9 @@
   {Permanent Full-time}
   {Jun.~2024 -- Jul.~2025}
 \itemListStart
-  \myItem{Verified UWB receiver path(analog front end); Verified WLAN CP-PLL synthesizer across 500+ channels using UVM, ensuring coverage over 2G/5G bands; Developed GRU-based multi-head model for analog gain line-up optimization and an MLP for VCO capacitance prediction, replacing manual tuning across 1000+ frequency targets.}
+  \myItem{Verified UWB RX analog front-end and WLAN CP-PLL across 500+ channels using UVM; built GRU/MLP models for analog gain and VCO tuning, replacing manual calibration across 1000+ targets.}
 \itemListEnd
+
 
 \jobHeading
   {University of Toronto -- WIRLab}
@@ -143,7 +101,7 @@
   {Contract Part-time}
   {Jul. 2021 -- Sep. 2021}
 \itemListStart
-  \myItem{Applied \textbf{PCA-based embedding visualization} to investigate semantic clusters for \textbf{Transformer-based NLP tasks}.}\href{https://github.com/fireflyndmoon43/attn_nmt_visualize/blob/main/Final_Report_2021_08_30.pdf}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+  \myItem{Applied PCA-based embedding visualization to investigate semantic clusters for \textbf{Transformer-based NLP tasks}.}\href{https://github.com/fireflyndmoon43/attn_nmt_visualize/blob/main/Final_Report_2021_08_30.pdf}{\textcolor{NavySecondary}{\textbf{[Code]}}}
 \itemListEnd
 
 
@@ -156,38 +114,115 @@
   \myItem{Built UVM testbenches for SerDes subsystems (clocking, datapath, SRAM), expanding coverage to 50+ scenarios; Scaled Jenkins CI/CD regression from 4 to 60+ projects, enabling \textbf{15$\times$} throughput growth.}
 \itemListEnd
 
+% ---------- Education ----------
+\cvsection{Education}
+\eduHeading
+  {University of Toronto}
+  {Bachelor of Applied Science, Electrical Engineering}
+  {Sep.~2017 -- Jun.~2022}
+\itemListStart
+\myItem{%
+\textbf{Capstone:} CNN NPU overlay + compiler for Intel Stratix~10~NX;
+custom CONVU + DLS compiler for MobileNetV1, achieving \textbf{4.3×} speedup over Brainwave.
+\textit{Supervisors: Prof.~Vaughn Betz, Andrew Boutros}.}
+\itemListEnd
+
+
+\eduHeading
+  {University of Toronto}
+  {Master of Engineering, Electrical \& Computer Engineering}
+  {Sep.~2022 -- Jun.~2024}
+\itemListStart
+\myItem{%
+\textbf{MEng Thesis:} \emph{Pilot Training for AoA and Channel Estimation in 5G MIMO-OFDM};
+evaluated \textbf{LMMSE vs.\ Matrix-Pencil} methods under 3GPP-compliant multicell models,
+showing \textbf{higher AoA accuracy} with limited antennas.
+\textit{Supervisor: Prof.~Raviraj Adve}.}
+\itemListEnd
+
+% ---------- Publications ----------
+\cvsectionwithmeta{Publications}{Peer-reviewed conferences}
+\vspace{-2pt}
+\pubListStart
+\item Arash Ahmadian, Louis S.P. Liu, \textbf{Yue Fei}, Konstantinos N. Plataniotis, Mahdi S. Hosseini. \href{https://ieeexplore.ieee.org/document/10097215/}{\papertitle{Pseudo-Inverted Bottleneck Convolution for DARTS Search Space}}.
+\conference{IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, 2023.
+
+\item Abnash Bassi, \textbf{Yue Fei}, Gilead Posluns, Mark C. Jeffrey.
+\papertitle{Optimized Priority Scheduling for Faster Scalable Belief Propagation}.
+\conference{Probabilistic Graphical Models (PGM)}, \submissionstatus{In Submission}, 2026.
+\pubListEnd
+
 % ---------- Projects ----------
 \cvsection{Selected Academic Projects}
 \vspace{-4pt}
-\projHeading{Capstone Project - NPU CNN Overlay on FPGA}{Sep. 2021 – Apr. 2022}
-\itemListStart
-\footnotesize{
-    \myItem{\textbf{NPU HLS Compiler Infrastructure} Architected a \textbf{VLIW-based Python compiler} that packs 130-bit instruction chains for parallel Loader, CONVU, and MFU execution. Implemented \textbf{tag-based dependency tracking} and \textbf{explicit NOP insertion} within the ISA to resolve RAW hazards in software.}
-    \myItem{\textbf{RTL Logistics} Engineered a hierarchical RTL scheduler in SystemVerilog using \textbf{credit-based flow control} and pipelined reduction trees, achieving a verified \textbf{450 MHz Fmax} on Intel Stratix 10 NX.}
-}
-\itemListEnd
-\projHeading{ECE1755 Course work - Parallel Graph-Inference Scheduler}{Jan. 2024 – Apr. 2024}
-\itemListStart
-\footnotesize{
-    \myItem{\textbf{Concurrency \& Scheduling:} Architected a multi-threaded asynchronous scheduler for \textbf{Ising, Potts, and LDPC} models using a Stealing Multi-Queue (SMQ) with lazy priority updates to resolve ordering bottlenecks in parallel Belief Propagation.}
-    \myItem{\textbf{Sparse Data Optimization:} Optimized memory access for irregular graphs using \textbf{Compressed Sparse Row (CSR)} formats, minimizing cache-line contention and improving effective bandwidth on 48-thread manycore architectures.}
-}
-\itemListEnd
-% ---------- Awards ----------
-\cvsection{Awards, Certificates, \& Talks}
-\vspace{-4pt}
+
+\projCategory{Computer Architecture \& Digital Design Systems}
+
 \itemListStart
 \small{
-\item Edward S. Rogers Sr. Department Betz Entrance Scholarship (\$5,000) \hfill \textit{2017}\vspace{-1pt}
-\item Certificate in Engineering Business  \hfill \textit{Jun. 2022}\vspace{-1pt}
-\item Qualcomm Panel Discussion: \textit{Demystifying Machine Learning} \hfill {Mar.\ 2025}}\vspace{-1pt}
+\myItem{\textbf{Parallel Beamforming \& Cache Coherence (ECE1755):}
+Accelerated ultrasound beamforming by \textbf{7×} (17\,s$\rightarrow$2.5\,s) using \textbf{16-thread SIMD parallelism} and memory optimizations (\texttt{restrict});
+designed and verified a \textbf{3-hop MSI/MESI directory protocol} in Mur$\phi$ with an \textbf{Exclusive (E)} state to reduce bus traffic.
+\href{https://github.com/fireflyndmoon43/ece1755}{\textcolor{NavySecondary}{\textbf{[Code]}}}
+}
+
+\myItem{\textbf{Parallel Graph Inference Scheduler (ECE1755 Project):}
+Built a multi-threaded asynchronous scheduler for \textbf{LDPC, Ising, and Potts} models using a \textbf{Stealing Multi-Queue (SMQ)};
+optimized sparse graph traversal via \textbf{CSR layouts}, improving cache efficiency on \textbf{48-thread} manycore systems.}
+
+\myItem{\textbf{Computer Architecture (ECE552):}
+Implemented \textbf{MIPS 6-stage pipelined CPU} with hazard detection, \textbf{Tomasulo OoO execution},
+\textbf{perceptron branch prediction}, MSI directory coherence, and a \textbf{Bouquet L1 prefetcher} (IPCP+DPT+GHB);
+evaluated area/latency tradeoffs using CACTI (\textbf{$\sim$24\%} area, $<1$\,ns access).}
+
+\myItem{\textbf{CNN NPU Overlay \& Compiler (Capstone):}
+Designed a \textbf{VLIW-based Python compiler} packing 130-bit instruction chains with dependency tracking and NOP insertion;
+engineered a SystemVerilog RTL scheduler with \textbf{credit-based flow control}, achieving \textbf{450\,MHz Fmax} on Intel Stratix~10~NX.}
+}
 \itemListEnd
-% ---------- Skills ----------
-\cvsection{Technical Skills}
-\vspace{-4pt}
-\begin{itemize}[leftmargin=0.15in, label={}]
-    \footnotesize{\item{
-     \textbf{Software \& Tools::}{ C/C++, Python (NumPy/Keras), Julia, ModelSim/VCS, Git, Jenkins CI/CD, SystemVerilog, Graph IR, SIMD, ISA Simulation, MLIR/LLVM (Logic), Quartus Prime.} \\
-    }}
-\end{itemize}
+\vspace{-2.5pt}
+\projCategory{Error-Correcting Codes \& Graphical Inference}
+
+\itemListStart
+\small{
+\myItem{\textbf{Graph-Based Error-Correcting Codes:}
+Implemented \textbf{LDPC, Polar, and Fountain/LT} encoders/decoders over erasure channels, with custom simulators in Julia and MATLAB.
+\href{https://github.com/fireflyndmoon43/ECE1508-Graphs-Codes-and-Inference}{\textcolor{NavySecondary}{\textbf{[Code]}}}}
+
+\myItem{\textbf{Error Control Coding:}
+Implemented \textbf{convolutional} and \textbf{BCH} codes with Viterbi decoding and finite-field arithmetic over \(GF(2^m)\).}
+}
+\itemListEnd
+
+\vspace{-2.5pt}
+
+% ---------- Awards + Skills ----------
+\vspace{-2pt}
+\noindent
+\begin{minipage}[t]{0.46\textwidth}
+  \cvsection{Awards \& Talks}
+  \vspace{-6pt}
+  \itemListStart
+  \footnotesize{
+    \item Edward S. Rogers Sr. Dept. Betz Entrance Scholarship (\$5,000) \hfill \textit{2017}
+    \item Certificate in Engineering Business \hfill \textit{Jun.~2022}
+    \item Qualcomm Panel: \textit{Demystifying Machine Learning} \hfill \textit{Mar.~2025}
+  }
+  \itemListEnd
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.52\textwidth}
+  \cvsection{Technical Skills}
+  \vspace{-6pt}
+  \begin{itemize}[leftmargin=0pt, label={}]
+    \footnotesize{
+      \item \textbf{Software \& Tools:}
+      C/C++, Python (NumPy/Keras), Julia, SystemVerilog, SIMD, MLIR/LLVM,
+      ISA simulation, Graph IR, Git, Jenkins CI/CD, Quartus Prime,
+      Cadence Virtuoso, Synopsys VCS
+    }
+  \end{itemize}
+\end{minipage}
+
+
 \end{document}
